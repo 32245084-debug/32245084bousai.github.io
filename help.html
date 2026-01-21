@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>お助け掲示板 投稿</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+<header class="header">
+  <div class="container">
+    <p class="badge">支援</p>
+    <h1 class="title">お助け掲示板 投稿</h1>
+    <p class="subtitle">困っていること、手助けできることを投稿してください</p>
+    <p>
+      <a href="./index.html">← HOME</a>｜
+      <a href="./help_board.html">掲示板を見る →</a>
+    </p>
+  </div>
+</header>
+
+<main class="container">
+  <section class="note">
+    <h3>投稿フォーム</h3>
+
+    <label>立場</label>
+    <select id="role" style="width:100%;">
+      <option value="個人">個人</option>
+      <option value="支援者">支援者</option>
+    </select>
+    <p style="font-size:13px;color:#555;margin-top:6px;">
+      ※「個人」には、地域住民の方、当事者の方などを含みます。
+    </p>
+
+    <label style="margin-top:10px;">カテゴリ</label>
+    <select id="category" style="width:100%;">
+      <option value="物資">物資</option>
+      <option value="人手">人手</option>
+      <option value="移動・送迎">移動・送迎</option>
+      <option value="情報">情報</option>
+      <option value="その他">その他</option>
+    </select>
+
+    <label style="margin-top:10px;">緊急度</label>
+    <select id="urgency" style="width:100%;">
+      <option value="低">低</option>
+      <option value="中">中</option>
+      <option value="高">高</option>
+    </select>
+
+    <label style="margin-top:10px;">場所（任意）</label>
+    <input id="place" type="text" style="width:100%;" placeholder="例：中島仮設団地、七尾市○○町 など">
+
+    <label style="margin-top:10px;">タイトル（任意）</label>
+    <input id="title" type="text" style="width:100%;" placeholder="例：毛布が足りません / 送迎できます">
+
+    <label style="margin-top:10px;">内容（必須）</label>
+    <textarea id="text" rows="6" style="width:100%;" placeholder="何が必要か、何ができるか、いつまでに、など具体的に"></textarea>
+
+    <label style="margin-top:10px;">
+      写真（任意）
+      <input type="file" id="photo" accept="image/*">
+    </label>
+
+    <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap;">
+      <button id="post" type="button">投稿する</button>
+      <button id="reset" type="button">入力をクリア</button>
+    </div>
+
+    <p id="msg" style="color:#555;margin-top:10px;"></p>
+  </section>
+</main>
+
+<script src="./js/help.js"></script>
+</body>
+</html>

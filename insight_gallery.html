@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>みんなの気づき（一覧）</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+<header class="header">
+  <div class="container">
+    <p class="badge">共有</p>
+    <h1 class="title">みんなの気づき</h1>
+    <p class="subtitle">タグと検索で、経験の蓄積から学ぶ</p>
+    <p><a href="./insight.html">← 投稿する</a></p>
+  </div>
+</header>
+
+<main class="container">
+
+  <section class="note">
+    <h3>検索・絞り込み</h3>
+
+    <label>キーワード検索（タイトル・本文・タグ）</label>
+    <input id="q" type="text" style="width:100%;" placeholder="例：雨量、避難所、子ども、情報共有…">
+
+    <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
+      <div style="flex:1; min-width:200px;">
+        <label>カテゴリ</label>
+        <select id="filterCategory" style="width:100%;">
+          <option value="">すべて</option>
+          <option value="防災学習">防災学習</option>
+          <option value="避難・生活">避難・生活</option>
+          <option value="情報共有">情報共有</option>
+          <option value="支援活動">支援活動</option>
+          <option value="地域のつながり">地域のつながり</option>
+          <option value="その他">その他</option>
+        </select>
+      </div>
+
+      <div style="flex:1; min-width:200px;">
+        <label>立場</label>
+        <select id="filterRole" style="width:100%;">
+          <option value="">すべて</option>
+          <option value="個人">個人</option>
+          <option value="支援者">支援者</option>
+        </select>
+      </div>
+    </div>
+
+    <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap;">
+      <button id="clear" type="button">検索条件をクリア</button>
+      <span id="count" style="color:#555;"></span>
+    </div>
+
+    <div style="margin-top:12px;">
+      <p style="margin:0; color:#555;">タグ一覧（クリックで絞り込み）</p>
+      <div id="tagCloud" style="margin-top:8px; display:flex; gap:8px; flex-wrap:wrap;"></div>
+    </div>
+  </section>
+
+  <section class="note" id="list">
+    <h3>投稿一覧</h3>
+    <div id="cards"></div>
+  </section>
+
+</main>
+
+<script src="./js/insight_gallery.js"></script>
+</body>
+</html>

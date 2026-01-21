@@ -1,0 +1,338 @@
+@charset "utf-8";
+
+/* --------------------------------------------------------------
+  Reset（超簡略版：あなたのコードに近い雰囲気）
+-------------------------------------------------------------- */
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+img { max-width: 100%; height: auto; }
+ul, ol { margin: 0; padding-left: 1.2em; }
+a img { border: 0; }
+:focus { outline: 0; }
+
+/* --------------------------------------------------------------
+  Base
+-------------------------------------------------------------- */
+body{
+  color:#555;
+  font-size:13px;
+  font-family:verdana,"ヒラギノ丸ゴ ProN W4","Hiragino Maru Gothic ProN","メイリオ","Meiryo","ＭＳ Ｐゴシック","MS PGothic",Sans-Serif;
+  line-height:1.5;
+  -webkit-text-size-adjust:100%;
+  background:#fff;
+}
+
+a{ color:#6caefe; text-decoration:none; }
+a:hover{ color:#488fdd; }
+
+/* --------------------------------------------------------------
+  Layout（今のHTML構造に合わせる）
+-------------------------------------------------------------- */
+.container{
+  width: 98%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 1%;
+}
+
+.header{
+  padding: 18px 0 14px;
+}
+
+.badge{
+  display:inline-block;
+  font-size:11px;
+  color:#999;
+  margin:0 0 6px;
+}
+
+.title{
+  margin: 0 0 6px;
+  font-size: 22px;
+  font-weight: bold;
+  color:#333;
+}
+
+.subtitle{
+  margin: 0 0 8px;
+  font-size: 13px;
+  color:#666;
+}
+
+.header a{
+  color:#6caefe;
+}
+.header a:hover{
+  color:#488fdd;
+}
+
+/* --------------------------------------------------------------
+  Nav風（必要なら：HOMEにメニューを置く場合）
+-------------------------------------------------------------- */
+.navbar{
+  border-top:2px solid #ebebeb;
+  border-bottom:2px solid #ebebeb;
+  margin: 12px 0 0;
+}
+.navbar ul{
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:flex;
+  flex-wrap:wrap;
+}
+.navbar li{
+  flex: 1 1 160px;
+}
+.navbar a{
+  display:block;
+  text-align:center;
+  padding: 12px 8px;
+  color:#555;
+}
+.navbar a:hover{
+  color:#999;
+}
+
+/* --------------------------------------------------------------
+  Card（あなたの note を“box”っぽく）
+-------------------------------------------------------------- */
+.note{
+  border-top:2px solid #ebebeb;
+  border-bottom:px solid #ebebeb;
+  padding: 18px 12px;
+  margin: 14px 0;
+  background:#fff;
+}
+
+.note h3{
+  margin:  0 10px;
+  font-size:16px;
+  font-weight: normal;
+  color:#333;
+}
+
+.note h4{
+  margin: 0;
+  font-size: 14px;
+  font-weight: bold;
+  color:#333;
+}
+
+.note p{ margin: 6px 0; }
+
+/* --------------------------------------------------------------
+  Buttons / Forms（見た目統一）
+-------------------------------------------------------------- */
+button{
+  padding: 8px 12px;
+  border: 1px solid #d6d6d6;
+  background: #f7f7f7;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  color:#333;
+}
+button:hover{
+  background:#f0f0f0;
+}
+
+select, input, textarea{
+  border: 1px solid #d6d6d6;
+  background:#fff;
+  border-radius: 6px;
+  padding: 8px;
+  font-size: 13px;
+  font-family: inherit;
+}
+
+select{ padding: 8px; }
+
+textarea{ line-height:1.5; }
+
+/* --------------------------------------------------------------
+  Grid（HOMEで4機能を並べるのに使える）
+-------------------------------------------------------------- */
+.gridWrapper{
+  clear:both;
+  padding-bottom:20px;
+  overflow:hidden;
+}
+
+.grid{
+  float:left;
+  width:32%;
+  margin:10px 0 0 1%;
+}
+
+.box{
+  padding:10px;
+  border:1px solid #ebebeb;
+  border-radius: 10px;
+  background:#fff;
+}
+
+.box h3{
+  font-size:16px;
+  padding:10px 0 10px;
+  margin:0;
+}
+
+.box p{
+  margin: 6px 0;
+}
+
+.box p.readmore{
+  text-align:right;
+  margin-top: 10px;
+}
+
+.box p.readmore a{
+  padding:3px 7px;
+  border-radius:3px;
+  background:#f7f7f7;
+  border:1px solid #e4e4e4;
+}
+.box p.readmore a:hover{
+  background:#efefef;
+}
+
+/* --------------------------------------------------------------
+  Footer（必要なら）
+-------------------------------------------------------------- */
+.footer{
+  margin-top: 22px;
+  padding: 18px 0 12px;
+  border-top: 2px solid #ebebeb;
+  text-align:center;
+  font-size: 10px;
+  color:#555;
+}
+
+/* --------------------------------------------------------------
+  Responsive
+-------------------------------------------------------------- */
+@media only screen and (max-width: 959px){
+  .grid{ width:49%; margin:10px 0 0 1%; }
+  .navbar a{ text-align:left; }
+}
+
+@media only screen and (max-width: 640px){
+  .title{ font-size: 18px; }
+  .grid{ width:100%; margin:10px 0; }
+}
+/* ===== 防災ボトル：②のエリアからはみ出さない対策 ===== */
+
+.card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 16px;
+
+  /* これが一番重要 */
+  overflow: hidden;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px;
+
+  /* 高さ計算崩れ防止 */
+  min-height: 1px;
+}
+
+label.item {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+
+  width: 100%;
+  box-sizing: border-box;
+
+  padding: 10px;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  background: #fff;
+}
+
+/* ===== 防災ボトル：アイテム一覧を3列表示 ===== */
+
+.grid {
+  display: grid;
+
+  /* 枠内いっぱいを均等に3分割 */
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  gap: 12px;
+  width: 100%;
+}
+
+label.item:hover {
+  background: #f2f8f8;
+  cursor: pointer;
+}
+
+/* 15点到達時：共有ボタンを強調 */
+#saveBtn.is-highlight {
+  transform: scale(1.03);
+  box-shadow: 0 0 0 3px rgba(0, 182, 189, 0.25);
+  animation: pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.85; }
+  100% { opacity: 1; }
+}
+
+/* ===== 防災学習 共通ヘッダー ===== */
+.pageHeader {
+  background: linear-gradient(135deg, #e6f7f8, #f9ffff);
+  border-bottom: 2px solid #00b6bd;
+  padding: 28px 0 24px;
+  margin-bottom: 24px;
+}
+
+.pageHeader .container {
+  text-align: center;
+}
+
+.badge {
+  display: inline-block;
+  background: #00b6bd;
+  color: #fff;
+  padding: 4px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  margin-bottom: 10px;
+}
+
+.pageTitle {
+  margin: 8px 0 6px;
+  font-size: 30px;
+  color: #007b80;
+}
+
+.pageSub {
+  margin: 0;
+  color: #555;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.navBack {
+  margin-top: 12px;
+  font-size: 14px;
+}
+
+.navBack a {
+  color: #007b80;
+  text-decoration: none;
+}
+
+.navBack a:hover {
+  text-decoration: underline;
+}

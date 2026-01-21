@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>みんなの防災ボトル</title>
+  <link rel="stylesheet" href="./style.css">
+  <style>
+    body{background:#f5f7f8;}
+    .container{max-width:900px;margin:0 auto;padding:20px;}
+    header{text-align:center;margin-bottom:20px;}
+    .card{background:#fff;border:1px solid #ddd;border-radius:14px;padding:16px;margin-bottom:16px;}
+    .badge{display:inline-block;background:#00b6bd;color:#fff;padding:4px 10px;border-radius:20px;font-size:12px;}
+    h1{margin:10px 0 0;}
+    .muted{color:#666;font-size:13px;margin:6px 0 0;}
+    .meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;color:#444;}
+    .pill{display:inline-block;padding:6px 10px;border-radius:999px;background:#e7fbfb;border:1px solid #00b6bd;color:#007b80;font-size:13px;}
+    .items{margin:10px 0 0;padding-left:18px;}
+    .reason{background:#f2f8f8;border:1px solid #d7eeee;border-radius:12px;padding:12px;margin-top:10px;}
+    .topRow{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:12px;}
+    button{cursor:pointer;background:#00b6bd;color:#fff;border:none;border-radius:10px;padding:10px 14px;font-size:15px;}
+    button.secondary{background:#6c757d;}
+    input[type="search"]{width:100%;max-width:420px;border-radius:10px;border:1px solid #ccc;padding:10px;box-sizing:border-box;}
+
+          /* ===== 反応（いいね） ===== */
+    .reactions{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content:flex-end;
+      margin-top:12px;
+      flex-wrap:wrap;
+    }
+
+    .reactBtn{
+      border:2px solid #ddd;
+      background:#fff;
+      border-radius:999px;
+      padding:8px 12px;
+      cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-weight:700;
+      font-size:14px;
+    }
+
+    .reactBtn:hover{ opacity:.9; }
+
+    .reactBtn.is-on{
+      border-color:#00b6bd;
+      background:#e6f7f8;
+    }
+
+    .reactCount{
+      font-weight:800;
+    }
+
+  </style>
+</head>
+<body>
+  <header class="container">
+    <span class="badge">共有</span>
+    <h1>みんなの防災ボトル</h1>
+    <p class="muted">投稿された防災ボトルと理由を見て、なるほどを集めましょう。</p>
+    <p style="margin-top:10px;">
+      <a href="./index.html">← HOME</a>
+      ｜ <a href="./bottle.html">防災ボトル体験へ戻る</a>
+    </p>
+
+    <div class="topRow">
+      <input id="q" type="search" placeholder="キーワード検索（例：簡易トイレ、通学、薬）">
+      <button id="clearSearch" class="secondary" type="button">検索クリア</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <div id="list"></div>
+    <p id="empty" class="muted" style="text-align:center;"></p>
+  </main>
+
+  <script src="./bottle_gallery.js"></script>
+</body>
+</html>

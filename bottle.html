@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>防災ボトル体験</title>
+  <link rel="stylesheet" href="./style.css">
+
+  <style>
+    body { background:#f5f7f8; }
+    .container { max-width:900px; margin:0 auto; padding:20px; }
+    header { text-align:center; margin-bottom:25px; }
+
+    section.note {
+      background:#fff;
+      padding:18px;
+      border-radius:14px;
+      margin-bottom:18px;
+      border:1px solid #ddd;
+      overflow:hidden;
+    }
+
+    h3 { color:#00b6bd; margin:0 0 10px; }
+
+    /* アイテム一覧：枠内いっぱい3列 */
+    .items-grid {
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap:10px;
+      width:100%;
+    }
+
+    .item {
+      border:1px solid #ccc;
+      border-radius:10px;
+      padding:10px;
+      cursor:pointer;
+      background:#fafafa;
+      text-align:center;
+      transition:0.2s;
+      box-sizing:border-box;
+      user-select:none;
+    }
+
+    .item.selected {
+      background:#e6f7f8;
+      border-color:#00b6bd;
+      font-weight:bold;
+    }
+
+    .item.disabled {
+      opacity:0.4;
+      pointer-events:none;
+    }
+
+    .center { text-align:center; }
+    textarea { width:100%; min-height:90px; border-radius:10px; border:1px solid #ccc; padding:10px; box-sizing:border-box; }
+    input[type="text"]{ width:100%; border-radius:10px; border:1px solid #ccc; padding:10px; box-sizing:border-box; }
+
+    button {
+      padding:10px 18px;
+      font-size:16px;
+      border:none;
+      border-radius:10px;
+      cursor:pointer;
+      background:#00b6bd;
+      color:#fff;
+    }
+
+    button:disabled {
+      background:#aaa;
+      cursor:not-allowed;
+    }
+
+    /* 共有ボタン強調 */
+    #saveBtn.is-highlight {
+      transform: scale(1.05);
+      box-shadow: 0 0 0 4px rgba(0,182,189,0.3);
+      animation: pulse 1.2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity:1; }
+      50% { opacity:0.85; }
+      100% { opacity:1; }
+    }
+
+    .btnRow{
+      margin-top:15px;
+      display:flex;
+      gap:10px;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+
+    @media (max-width: 700px){
+      .items-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 480px){
+      .items-grid{ grid-template-columns: 1fr; }
+    }
+
+    
+    
+              /* ===== ①②③ セクションの見た目を強化 ===== */
+
+    /* 共通：カードを太枠＋見出しを大きく */
+    section.note{
+      border: 2px solid #cfe9ea;          /* 枠を太く */
+      box-shadow: 0 8px 18px rgba(0,0,0,.05);
+      position: relative;
+    }
+
+    /* 各エリアに「番号バッジ」を出す（①②③が一目で分かる） */
+    section.note::before{
+      content: attr(data-step);
+      position: absolute;
+      top: -12px;
+      left: 16px;
+      background: #00b6bd;
+      color: #fff;
+      font-weight: 700;
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 2px solid #fff;
+      box-shadow: 0 6px 14px rgba(0,0,0,.08);
+    }
+
+    /* 見出し（②など）をもっと目立たせる */
+    section.note h3{
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: .02em;
+      margin: 0 0 12px;
+    }
+
+    /* ①：任意入力＝やわらかい色（注意喚起ではなく導入感） */
+    section.note.step-1{
+      border-color:#d7eeee;
+      background: linear-gradient(180deg, #f6ffff, #ffffff);
+    }
+    section.note.step-1 h3{ color:#007b80; }
+
+    /* ②：アイテム選択＝メイン操作なので強調 */
+    section.note.step-2{
+      border-color:#00b6bd;
+      background: linear-gradient(180deg, #eaffff, #ffffff);
+    }
+    section.note.step-2 h3{ color:#006a6e; }
+
+    /* ③：結果・理由＝一番重要なのでさらに強調（太枠＆色） */
+    section.note.step-3{
+      border: 3px solid #0d6efd;
+      background: linear-gradient(180deg, #eef5ff, #ffffff);
+    }
+    section.note.step-3::before{ background:#0d6efd; }
+    section.note.step-3 h3{ color:#0d6efd; }
+
+    /* ③の合計点/残りを見やすく（大きく） */
+    #statusArea .center strong{
+      font-size: 16px;
+    }
+    #total, #remain{
+      font-size: 22px;
+      font-weight: 800;
+      color: #0d6efd;
+    }
+
+    /* ③の「いっぱいになりました」表示を強める */
+    #limitMsg{
+      font-size: 16px;
+      color:#0d6efd;
+    }
+
+    /* アイテムカードの視認性アップ */
+    .item{
+      border-width: 2px;
+    }
+    .item:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 10px 16px rgba(0,0,0,.06);
+    }
+
+    /* 選択中アイテムはより目立つ（色＋枠） */
+    .item.selected{
+      border-width: 3px;
+      border-color: #00b6bd;
+    }
+
+    /* スマホで見出しが大きすぎないよう調整 */
+    @media (max-width: 480px){
+      section.note h3{ font-size: 18px; }
+      #total, #remain{ font-size: 20px; }
+    }
+        
+
+          /* ===== ②カテゴリ見出し（JSが挿入） ===== */
+    .catTitle{
+      grid-column: 1 / -1;            /* 3列の横幅いっぱい */
+      background:#0b5ed7;
+      color:#fff;
+      font-weight:800;
+      padding:8px 12px;
+      border-radius:10px;
+      margin-top:6px;
+      letter-spacing:.02em;
+    }
+
+    /* ===== ③ 選択済みをチップ表示 ===== */
+    #selectedList{
+      list-style:none;
+      padding:0;
+      margin:12px 0 0;
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+    }
+
+    #selectedList li{
+      list-style:none;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 10px;
+      border-radius:999px;
+      background:#e6f7f8;
+      border:2px solid #00b6bd;
+      color:#006a6e;
+      font-weight:700;
+      font-size:14px;
+    }
+
+    #selectedList li .miniScore{
+      display:inline-block;
+      padding:2px 8px;
+      border-radius:999px;
+      background:#00b6bd;
+      color:#fff;
+      font-size:12px;
+      font-weight:800;
+    }
+
+
+  </style>
+</head>
+
+<body>
+<header class="pageHeader">
+  <div class="container">
+    <span class="badge">防災学習</span>
+    <h1 class="pageTitle">防災ボトル体験</h1>
+    <p class="pageSub">
+      持ち出せる量には限りがあります。<br>
+      15点以内で、本当に必要なものを考えてみましょう。
+    </p>
+    <p class="navBack">
+      <a href="./index.html">← HOMEへ戻る</a>
+      ｜ <a href="./bottle_gallery.html">みんなの防災ボトル →</a>
+    </p>
+  </div>
+</header>
+
+
+<main class="container">
+
+  <!-- ① 任意：状況確認 -->
+  <section class="note step-1" data-step="①">
+
+    <h3>① 想定する状況（任意）</h3>
+    <p style="margin:0 0 8px;">どんな災害や場面を想定していますか？</p>
+    <input id="scenario" type="text" placeholder="例：大雨で自宅に戻れない、通学中に避難が必要、など">
+  </section>
+
+  <!-- ② アイテム選択 -->
+  <section class="note step-2" data-step="②">
+    <h3>② アイテムを選ぶ（最大15点）</h3>
+    <p style="margin:0 0 10px; color:#666;">15点を超えるアイテムは選べないようにします。</p>
+    <div id="items" class="items-grid"></div>
+  </section>
+
+  <!-- ③ 選択状況 -->
+  <section class="note step-3" data-step="③" id="statusArea">
+    <h3>③ 選択状況</h3>
+    <p class="center" style="margin:0;"><strong>合計点：</strong><span id="total">0</span> / 15点</p>
+    <p class="center" style="margin:6px 0 0;"><strong>残り：</strong><span id="remain">15</span> 点</p>
+    <p id="limitMsg" class="center" style="margin:10px 0 0; font-weight:bold; color:#00b6bd;"></p>
+
+    <ul id="selectedList" style="margin:10px 0 0; padding-left:18px;"></ul>
+
+    <h4 style="margin:14px 0 6px;">選んだ理由、使い方イメージ</h4>
+    <textarea id="reason" placeholder="例：簡易トイレは困りやすい、ウェットティッシュは衛生と気分転換になる、など"></textarea>
+
+    <div class="btnRow">
+      <button id="resetBtn" type="button" style="background:#dc3545;">選択をリセット</button>
+      <button id="saveBtn" disabled>保存して共有</button>
+    </div>
+
+    <p id="msg" class="center" style="margin:10px 0 0; color:#666;"></p>
+  </section>
+
+</main>
+
+<script src="./bottle.js"></script>
+</body>
+</html>
