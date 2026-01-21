@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>雨量シミュレーション｜防災学習</title>
+  <link rel="stylesheet" href="./style.css">
+
+  <style>
+    body { background:#f5f7f8; }
+    .container { max-width:900px; margin:0 auto; padding:20px; }
+    header { text-align:center; margin-bottom:25px; }
+    .badge { display:inline-block; background:#00b6bd; color:#fff; padding:4px 10px; border-radius:20px; font-size:12px; }
+    section.note { background:#fff; padding:18px; border-radius:14px; margin-bottom:18px; border:1px solid #ddd; }
+    section.note h3 { margin:0 0 10px; color:#00b6bd; }
+    select, button { padding:8px; font-size:15px; }
+    button { cursor:pointer; background:#00b6bd; color:#fff; border:none; border-radius:8px; }
+    button:hover { opacity:.85; }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="container">
+    <span class="badge">防災学習</span>
+    <h1 style="margin:10px 0;">雨量シミュレーション</h1>
+    <p style="color:#555; margin:0;">
+      1時間あたりの雨量を選び、想定される状況を写真と文章で確認します。
+    </p>
+    <p style="margin-top:10px;"><a href="./index.html">← HOMEへ戻る</a></p>
+  </div>
+</header>
+
+<main class="container">
+
+  <div style="background:#fff3cd; border:1px solid #ffe69c; padding:12px; border-radius:10px; margin-bottom:18px; color:#664d03;">
+    🔊 このページでは、雨音が再生されます。周囲の環境や音量にご配慮のうえ、必要に応じて再生してください。
+  </div>
+
+  <section class="note">
+    <h3>① 1時間あたりの雨量を選ぶ</h3>
+    <label style="display:block;">
+      1時間あたりの雨量（mm）
+      <select id="rain" style="width:100%; margin-top:6px;">
+        <option value="8">8mm（弱い雨）</option>
+        <option value="15">15mm</option>
+        <option value="30">30mm</option>
+        <option value="50">50mm（非常に激しい雨）</option>
+        <option value="80">80mm（記録的短時間大雨）</option>
+      </select>
+    </label>
+
+    <div style="margin-top:14px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
+      <button id="show" type="button">結果を見る</button>
+      <button id="playSound" type="button">雨音を再生（任意）</button>
+      <button id="stopSound" type="button">停止</button>
+    </div>
+
+    <p id="audioStatus" style="margin-top:10px; font-size:13px; color:#666; text-align:center;"></p>
+
+    <!-- controls を必ず付ける（これがないと「音が流れない」になりがち） -->
+    <audio id="rainAudio" controls style="width:100%; margin-top:8px;">
+      <source id="rainSource" src="" type="audio/mpeg">
+      お使いのブラウザは音声再生に対応していません。
+    </audio>
+  </section>
+
+  <section class="note" style="border:2px solid #0d6efd;">
+    <h3 style="color:#0d6efd;">② 想定される状況</h3>
+    <div id="result"></div>
+  </section>
+
+  <section class="note">
+    <h3>写真が出ない場合の確認</h3>
+    <ul style="margin:0; padding-left:18px; color:#555;">
+      <li><b>画像ファイル名が正確に</b> <code>rain1.jpg</code>〜<code>rain5.jpg</code> か</li>
+      <li><b>置き場所が</b> <code>images/</code> フォルダか</li>
+      <li>拡張子が <code>.JPG</code>（大文字）になっていないか（大文字だと環境によって読めないことがある）</li>
+    </ul>
+  </section>
+
+</main>
+
+<script src="./rain.js"></script>
+</body>
+</html>
