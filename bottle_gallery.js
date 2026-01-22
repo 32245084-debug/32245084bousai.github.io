@@ -151,7 +151,7 @@ function reactionHTML(entryId){
   return `
     <div class="reactions">
       <button class="reactBtn ${heart.on ? "is-on":""}" data-id="${entryId}" data-kind="heart" type="button">
-        ♡ <span>いいね</span> <span class="reactCount">${heart.count}</span>
+        💖 <span>いいね</span> <span class="reactCount">${heart.count}</span>
       </button>
       <button class="reactBtn ${like.on ? "is-on":""}" data-id="${entryId}" data-kind="like" type="button">
         👍 <span>参考になった</span> <span class="reactCount">${like.count}</span>
@@ -176,4 +176,5 @@ document.addEventListener("click", (e) => {
 
   // 同じカード内の別ボタンも、押し状態のままにしたいならここは不要
 });
+
 
