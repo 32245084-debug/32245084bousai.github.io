@@ -1,108 +1,106 @@
-<!doctype html>
-<html lang="ja">
-<head>
-  <meta charset="utf-8">
-  <title>防災・被災地支援 情報共有サイト</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="./style.css">
-</head>
+<!-- 機能リンク -->
+<section class="note">
+  <h1 style="color:#00b6bd; font-weight:700;">コンテンツ</h1>
 
-<body style="background:#f2f8f8;">
+  <div style="
+    display:flex;
+    flex-wrap:wrap;
+    gap:16px;
+    justify-content:center;
+    margin-top:24px;
+  ">
 
-<header class="header" style="text-align:center; padding:40px 0;">
-  <div class="container">
-    <h1 class="title" style="font-size:32px; color:#00b6bd;">
-      思考過程を共有する防災Webサイト
-    </h1>
-    <p class="subtitle" style="margin-top:10px; font-size:16px;">
-      防災学習と被災地支援をつなぐ、気づきと経験の共有
-    </p>
+    <!-- 雨量シミュレーション -->
+    <a href="./rain.html" style="text-decoration:none;"
+       onmouseover="this.firstElementChild.style.transform='translateY(-4px)'"
+       onmouseout="this.firstElementChild.style.transform='translateY(0)'">
+      <div style="
+        width:220px;
+        background:#fff;
+        border:2px solid #00b6bd;
+        border-radius:16px;
+        padding:20px;
+        box-shadow:0 6px 12px rgba(0,0,0,0.08);
+        transition:0.3s;
+        text-align:center;
+      ">
+        <h3 style="font-weight:600; color:#00b6bd; margin-bottom:8px;">
+          ☔ 雨量シミュレーション
+        </h3>
+        <p style="font-size:14px; color:#444; margin:0;">
+          雨量から被害をイメージし、防災意識を高める
+        </p>
+      </div>
+    </a>
+
+    <!-- 防災ボトル体験 -->
+    <a href="./bottle.html" style="text-decoration:none;"
+       onmouseover="this.firstElementChild.style.transform='translateY(-4px)'"
+       onmouseout="this.firstElementChild.style.transform='translateY(0)'">
+      <div style="
+        width:220px;
+        background:#fff;
+        border:2px solid #00b6bd;
+        border-radius:16px;
+        padding:20px;
+        box-shadow:0 6px 12px rgba(0,0,0,0.08);
+        transition:0.3s;
+        text-align:center;
+      ">
+        <h3 style="font-weight:600; color:#00b6bd; margin-bottom:8px;">
+          🎒 防災ボトル体験
+        </h3>
+        <p style="font-size:14px; color:#444; margin:0;">
+          持ち出し品の選択理由を考え、共有する
+        </p>
+      </div>
+    </a>
+
+    <!-- 気づき共有 -->
+    <a href="./insight_gallery.html" style="text-decoration:none;"
+       onmouseover="this.firstElementChild.style.transform='translateY(-4px)'"
+       onmouseout="this.firstElementChild.style.transform='translateY(0)'">
+      <div style="
+        width:220px;
+        background:#fff;
+        border:2px solid #00b6bd;
+        border-radius:16px;
+        padding:20px;
+        box-shadow:0 6px 12px rgba(0,0,0,0.08);
+        transition:0.3s;
+        text-align:center;
+      ">
+        <h3 style="font-weight:600; color:#00b6bd; margin-bottom:8px;">
+          💡 気づき共有
+        </h3>
+        <p style="font-size:14px; color:#444; margin:0;">
+          経験や学びを蓄積し、次に活かす
+        </p>
+      </div>
+    </a>
+
+    <!-- お助け掲示板 -->
+    <a href="./help_board.html" style="text-decoration:none;"
+       onmouseover="this.firstElementChild.style.transform='translateY(-4px)'"
+       onmouseout="this.firstElementChild.style.transform='translateY(0)'">
+      <div style="
+        width:220px;
+        background:#fff;
+        border:2px solid #00b6bd;
+        border-radius:16px;
+        padding:20px;
+        box-shadow:0 6px 12px rgba(0,0,0,0.08);
+        transition:0.3s;
+        text-align:center;
+      ">
+        <h3 style="font-weight:600; color:#00b6bd; margin-bottom:8px;">
+          🤝 お助け掲示板
+        </h3>
+        <p style="font-size:14px; color:#444; margin:0;">
+          個人と支援者が情報を共有する
+        </p>
+      </div>
+    </a>
+
   </div>
-</header>
-
-<main class="container" style="text-align:center;">
-
-  <!-- メインビジュアル -->
-  <section class="note">
-    <img src="./home_main.jpg"
-         alt="防災・地域の写真"
-         style="max-width:50%; border-radius:10px; margin-bottom:16px;">
-    <p style="margin:0;">
-      被災地でのボランティア活動や防災啓発活動を通して感じた課題をもとに、<br>
-      情報技術を活用した新しい防災・被災地支援の形を提案します。
-    </p>
-  </section>
-
-  <!-- 機能リンク -->
-  <section class="note">
-    <h1 style="color:#00b6bd;">コンテンツ</h1>
-
-    <div style="
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      justify-content:center;
-      margin-top:20px;
-    ">
-
-      <a href="./rain.html" style="text-decoration:none;">
-        <div style="width:220px; background:#fff; border:1px solid #ddd; border-radius:12px; padding:16px;">
-          <h3>雨量シミュレーション</h3>
-          <p style="font-size:14px;">
-            雨量から被害をイメージし、防災意識を高める
-          </p>
-        </div>
-      </a>
-
-      <a href="./bottle.html" style="text-decoration:none;">
-        <div style="width:200px; background:#fff; border:1px solid #ddd; border-radius:12px; padding:16px;">
-          <h3>防災ボトル体験</h3>
-          <p style="font-size:14px;">
-            持ち出し品の選択理由を考え、共有する
-          </p>
-        </div>
-      </a>
-
-      <a href="./insight_gallery.html" style="text-decoration:none;">
-        <div style="width:200px; background:#fff; border:1px solid #ddd; border-radius:12px; padding:16px;">
-          <h3>気づき共有</h3>
-          <p style="font-size:14px;">
-            経験や学びを蓄積し、次に活かす
-          </p>
-        </div>
-      </a>
-
-      <a href="./help_board.html" style="text-decoration:none;">
-        <div style="width:200px; background:#fff; border:1px solid #ddd; border-radius:12px; padding:16px;">
-          <h3>お助け掲示板</h3>
-          <p style="font-size:14px;">
-            個人と支援者が情報を共有する
-          </p>
-        </div>
-      </a>
-
-    </div>
-  </section>
-
-  <!-- 研究の背景 -->
-  <section class="note" style="text-align:left;">
-    <h2 style="color:#00b6bd;">このサイトについて</h2>
-    <p>
-      本Webサイトは、被災地でのボランティア活動や防災ワークショップの経験を通して得られた
-      「気づき」や「考えの背景」を共有・蓄積することを目的として設計されています。
-    </p>
-    <p>
-      判断結果だけでなく、その理由や経験を共有することで、防災学習や被災地支援の質を高める
-      ことができると考えています。
-    </p>
-  </section>
-
-</main>
-
-<footer style="text-align:center; padding:20px; color:#666;">
-  <p>© 卒業研究 防災・被災地支援Webサイト</p>
-</footer>
-
-</body>
-</html>
-
+</section>
