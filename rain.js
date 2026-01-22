@@ -9,27 +9,27 @@ const sourceEl = document.getElementById("rainSource");
 const audioStatusEl = document.getElementById("audioStatus");
 
 function rainAudioFor(mm) {
-  if (mm <= 8) return "audio/rain1.mp3";
-  if (mm <= 15) return "audio/rain2.mp3";
-  if (mm <= 30) return "audio/rain3.mp3";
-  if (mm <= 50) return "audio/rain4.mp3";
-  return "audio/rain5.mp3";
+  if (mm <= 8) return "/rain1.mp3";
+  if (mm <= 15) return "/rain2.mp3";
+  if (mm <= 30) return "/rain3.mp3";
+  if (mm <= 50) return "/rain4.mp3";
+  return "/rain5.mp3";
 }
 
 // 風は今は「用意だけ」して実際には再生しない（雨音だけでOKならこれで十分）
 function windAudioFor(mm) {
-  if (mm >= 30 && mm <= 50) return "audio/wind3.mp3";
-  if (mm > 50) return "audio/wind5.mp3";
+  if (mm >= 30 && mm <= 50) return "/wind3.mp3";
+  if (mm > 50) return "/wind5.mp3";
   return null;
 }
 
 // 画像：rain4.jpg は無いので null にする
 function imageFor(mm) {
-  if (mm <= 8) return "images/rain1.jpg";
-  if (mm <= 15) return "images/rain2.jpg";
-  if (mm <= 30) return "images/rain3.jpg";
-  if (mm <= 50) return null;
-  return "images/rain5.jpg";
+  if (mm <= 8) return "/rain1.jpg";
+  if (mm <= 15) return "/rain2.jpg";
+  if (mm <= 30) return "/rain3.jpg";
+  if (mm <= 50) return "/rain4.jpg";
+  return "/rain5.jpg";
 }
 
 function riskInfo(level) {
@@ -170,3 +170,4 @@ stopBtn.addEventListener("click", () => {
 // 初期表示
 updateAudio();
 renderResult();
+
